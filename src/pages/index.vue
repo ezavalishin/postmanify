@@ -56,7 +56,7 @@ export default {
     },
 
     async created() {
-        this.dumpLink = '/ecoglamour.postman_collection.json'
+        this.dumpLink = document.getElementById('postmanify').getAttribute('data-collection');
         const { data } = await axios.get(this.dumpLink)
 
         this.items = data.item
