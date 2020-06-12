@@ -43,8 +43,8 @@ export default {
   props: {
     body: {
       default: null,
-      type: Object
-    }
+      type: Object,
+    },
   },
 
   computed: {
@@ -83,7 +83,7 @@ export default {
 
     json() {
       return JSON.parse(this.raw)
-    }
-  }
+    },
+  },
 }
 </script>

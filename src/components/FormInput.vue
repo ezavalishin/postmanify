@@ -25,35 +25,35 @@ export default {
 
   model: {
     prop: 'value',
-    event: 'input'
+    event: 'input',
   },
 
   computed: {
     filled() {
       return !!this.value
-    }
+    },
   },
 
   props: {
     label: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
       type: String,
-      default: null
+      default: null,
     },
     required: {
       type: Boolean,
       required: false,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }
 </script>
 <style>

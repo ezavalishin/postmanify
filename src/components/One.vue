@@ -38,13 +38,13 @@ export default {
   props: {
     item: {
       required: true,
-      type: Object
-    }
+      type: Object,
+    },
   },
 
   data() {
     return {
-      isOpened: false
+      isOpened: false,
     }
   },
 
@@ -78,25 +78,25 @@ export default {
 
     response() {
       return this.item.response
-    }
+    },
   },
 
-    watch: {
-        isOpened(value) {
-            localStorage[this.slug] = value
-        }
+  watch: {
+    isOpened(value) {
+      localStorage[this.slug] = value
     },
+  },
 
-    created() {
-        if (localStorage[this.slug] && JSON.parse(localStorage[this.slug])) {
-            this.isOpened = true
-        }
-    },
+  created() {
+    if (localStorage[this.slug] && JSON.parse(localStorage[this.slug])) {
+      this.isOpened = true
+    }
+  },
 
   methods: {
     toggle() {
       this.isOpened = !this.isOpened
-    }
-  }
+    },
+  },
 }
 </script>

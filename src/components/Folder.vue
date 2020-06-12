@@ -21,37 +21,37 @@
 
 <script>
 import slugify from 'slugify'
-import One from "./One";
+import One from './One'
 export default {
   name: 'Folder',
 
   components: {
-    One
+    One,
   },
 
   props: {
     item: {
       required: true,
-      type: Object
-    }
+      type: Object,
+    },
   },
 
   data() {
     return {
-      isOpened: false
+      isOpened: false,
     }
   },
 
   computed: {
     slug() {
       return slugify(`f_${this.$vnode.key}_${this.item.name}`)
-    }
+    },
   },
 
   watch: {
     isOpened(value) {
-        localStorage[this.slug] = value
-    }
+      localStorage[this.slug] = value
+    },
   },
 
   created() {
@@ -63,7 +63,7 @@ export default {
   methods: {
     toggle() {
       this.isOpened = !this.isOpened
-    }
-  }
+    },
+  },
 }
 </script>

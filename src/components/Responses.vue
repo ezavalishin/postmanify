@@ -31,20 +31,20 @@ export default {
   props: {
     responses: {
       default: null,
-      type: Array
-    }
+      type: Array,
+    },
   },
 
   data() {
     return {
-      isOpened: false
+      isOpened: false,
     }
   },
 
   methods: {
     toggle() {
       this.isOpened = !this.isOpened
-    }
-  }
+    },
+  },
 }
 </script>
