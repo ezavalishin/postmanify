@@ -11,10 +11,10 @@
                 Key
               </th>
               <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
-                Value
+                Description
               </th>
               <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
-                Description
+                Example
               </th>
             </tr>
           </thead>
@@ -22,10 +22,10 @@
             <tr v-for="(param, key) in urlencoded" :key="key">
               <td class="text-left py-3 px-4">{{ param.key }}</td>
               <td class="text-left py-3 px-4">
-                <form-input v-model="param.value" :name="`${key}_param.key`" />
+                {{ param.description }}
               </td>
               <td class="text-left py-3 px-4">
-                {{ param.description }}
+                {{ param.value }}
               </td>
             </tr>
           </tbody>
@@ -36,10 +36,8 @@
 </template>
 
 <script>
-import FormInput from './FormInput'
 export default {
   name: 'RequestBody',
-  components: { FormInput },
   props: {
     body: {
       default: null,

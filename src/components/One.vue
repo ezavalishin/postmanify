@@ -16,6 +16,10 @@
         {{ description }}
       </div>
 
+      <div v-if="query" class="mt-10">
+        <request-query :query="query" />
+      </div>
+
       <div class="mt-10">
         <request-body :body="body" />
       </div>
@@ -31,10 +35,11 @@
 import slugify from 'slugify'
 import RequestBody from './RequestBody'
 import Responses from './Responses'
+import RequestQuery from './RequestQuery'
 
 export default {
   name: 'One',
-  components: { Responses, RequestBody },
+  components: { RequestQuery, Responses, RequestBody },
   props: {
     item: {
       required: true,
@@ -78,6 +83,10 @@ export default {
 
     response() {
       return this.item.response
+    },
+
+    query() {
+      return this.request.url.query
     },
   },
 
