@@ -10,8 +10,8 @@
     <div v-if="isOpened" class="px-10 py-5 text-gray-600">
       <component
         :is="innerItem.item ? 'folder' : 'one'"
-        v-for="(innerItem, key) in item.item"
-        :key="key"
+        v-for="innerItem in item.item"
+        :key="slugify(innerItem.name)"
         :item="innerItem"
       >
       </component>
@@ -42,6 +42,12 @@ export default {
   computed: {
     slug() {
       return slugify(`f_${this.$vnode.key}_${this.item.name}`)
+    },
+  },
+
+  methods: {
+    slugify(value) {
+      return slugify(value)
     },
   },
 }
