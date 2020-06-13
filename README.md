@@ -5,7 +5,7 @@ Generate HTML api for your postman collections
 
 ## Demo
 
-https://ezavalishin.github.io/postmanify/demo.html
+https://ezavalishin.github.io/postmanify/demo
 
 ## Usage
 
