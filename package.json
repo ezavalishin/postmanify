@@ -15,7 +15,7 @@
     "sweet-modal-vue": "^2.0.0",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11",
-    "vue-highlight.js": "^3.1.0"
+    "vue-prism": "^1.0.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.4.0",

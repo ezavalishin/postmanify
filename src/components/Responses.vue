@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="mb-5">Responses</div>
-    <div v-for="(response, key) in responses" :key="key" class="bg-white">
+    <div :key="key" class="bg-white" v-for="(response, key) in responses">
       <div
-        class="flex items-center justify-between p-5 cursor-pointer"
         @click="toggle"
+        class="flex items-center justify-between p-5 cursor-pointer"
       >
         <div class="flex items-center">
           <div>{{ response.code }}</div>
@@ -16,18 +16,17 @@
       </div>
 
       <div v-if="isOpened" class="p-5">
-        <highlight-code lang="json">
-          {{ response.body }}
-        </highlight-code>
+        <code-highlight>{{ response.body }}</code-highlight>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import CodeHighlight from './CodeHighlight'
 export default {
   name: 'Responses',
-
+  components: { CodeHighlight },
   props: {
     responses: {
       default: null,
