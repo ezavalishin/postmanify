@@ -7,10 +7,24 @@
           >github.com/ezavalishin/postmanify</a
         >
       </div>
-      <div>
-        <button @click="openVariables">variables</button>
+      <div class="flex">
+        <button
+          class="flex justify-center flex-col items-center mr-4 shadow p-2"
+          @click="openVariables"
+        >
+          <eye class="w-5 fill-current" />
+          Variables
+        </button>
+
+        <a
+          class="flex justify-center flex-col items-center shadow p-2"
+          :href="dumpLink"
+          target="_blank"
+        >
+          <download class="w-5 fill-current" />
+          Dump
+        </a>
       </div>
-      <!--            <a :href="dumpLink" target="_blank">Download dump</a>-->
     </header>
 
     <component
@@ -24,7 +38,7 @@
     <sweet-modal name="variables" ref="variables" title="Variables">
       <div>
         <form-input
-          :name="key"
+          :name="variable.key"
           :key="key"
           :label="variable.key"
           v-for="(variable, key) in variables"
@@ -41,6 +55,8 @@ import axios from 'axios'
 import Folder from '../components/Folder'
 import One from '../components/One'
 import FormInput from '../components/FormInput'
+import Eye from '../assets/eye.svg'
+import Download from '../assets/download.svg'
 
 export default {
   components: {
@@ -48,6 +64,8 @@ export default {
     Folder,
     One,
     SweetModal,
+    Eye,
+    Download,
   },
   data() {
     return {
