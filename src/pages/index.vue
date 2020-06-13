@@ -2,6 +2,11 @@
   <div class="container mx-auto">
     <header class="mb-16">
       <div class="text-5xl">postmanify</div>
+      <div>
+        <a href="https://github.com/ezavalishin/postmanify" target="_blank"
+          >github.com/ezavalishin/postmanify</a
+        >
+      </div>
       <!--            <button @click="openVariables">variables</button>-->
       <!--            <a :href="dumpLink" target="_blank">Download dump</a>-->
     </header>
