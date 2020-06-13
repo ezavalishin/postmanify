@@ -1,13 +1,15 @@
 <template>
   <div class="container mx-auto">
-    <header class="mb-16">
-      <div class="text-5xl">postmanify</div>
+    <header class="mb-16 flex justify-between flex-wrap items-center">
       <div>
+        <div class="text-5xl">postmanify</div>
         <a href="https://github.com/ezavalishin/postmanify" target="_blank"
           >github.com/ezavalishin/postmanify</a
         >
       </div>
-      <!--            <button @click="openVariables">variables</button>-->
+      <div>
+        <button @click="openVariables">variables</button>
+      </div>
       <!--            <a :href="dumpLink" target="_blank">Download dump</a>-->
     </header>
 
@@ -19,16 +21,17 @@
     >
     </component>
 
-    <!--        <sweet-modal name="variables" ref="variables" title="Variables">-->
-    <!--            <div>-->
-    <!--                <form-input-->
-    <!--                        :key="key"-->
-    <!--                        :label="variable.key"-->
-    <!--                        v-for="(variable, key) in variables"-->
-    <!--                        v-model="variable.value"-->
-    <!--                />-->
-    <!--            </div>-->
-    <!--        </sweet-modal>-->
+    <sweet-modal name="variables" ref="variables" title="Variables">
+      <div>
+        <form-input
+          :name="key"
+          :key="key"
+          :label="variable.key"
+          v-for="(variable, key) in variables"
+          v-model="variable.value"
+        />
+      </div>
+    </sweet-modal>
   </div>
 </template>
 
@@ -54,9 +57,9 @@ export default {
   },
 
   computed: {
-    // variables() {
-    //     return this.$store.state.variables.values
-    // }
+    variables() {
+      return this.$store.state.variables.values
+    },
   },
 
   async created() {
@@ -66,7 +69,7 @@ export default {
     const { data } = await axios.get(this.dumpLink)
 
     this.items = data.item
-    // this.$store.commit('variables/set', data.variable)
+    this.$store.commit('variables/set', data.variable)
   },
 
   methods: {
@@ -76,3 +79,11 @@ export default {
   },
 }
 </script>
+
+<style>
+.sweet-modal .sweet-box-actions .sweet-action-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
