@@ -61,6 +61,7 @@ import One from '../components/One'
 import FormInput from '../components/FormInput'
 import Eye from '../assets/eye.svg'
 import Download from '../assets/download.svg'
+import storagable from '../mixins/storagable'
 
 export default {
   components: {
@@ -79,6 +80,8 @@ export default {
     }
   },
 
+  mixins: [storagable],
+
   computed: {
     variables() {
       return this.$store.state.variables.values
@@ -86,6 +89,12 @@ export default {
 
     filteredItems() {
       return this.items.filter(this.filterItems)
+    },
+  },
+
+  watch: {
+    search(value) {
+      this.setValue('search', value)
     },
   },
 
@@ -97,6 +106,10 @@ export default {
 
     this.items = data.item
     this.$store.commit('variables/set', data.variable)
+
+    if (this.getValue('search')) {
+      this.search = this.getValue('search')
+    }
   },
 
   methods: {
@@ -124,8 +137,6 @@ export default {
 
       if (item.item) {
         item.item = item.item.filter(this.filterItems)
-
-        console.log(item.item)
 
         if (item.item.length > 0) {
           return true
