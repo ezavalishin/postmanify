@@ -64,7 +64,7 @@ export default {
     },
 
     slug() {
-      return slugify(`f_${this.$vnode.key}_${this.pathLink}`)
+      return slugify(`f_${this.$vnode.key}_${this.item.name}`)
     },
 
     description() {
