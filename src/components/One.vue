@@ -39,21 +39,19 @@ import RequestBody from './RequestBody'
 import Responses from './Responses'
 import RequestQuery from './RequestQuery'
 import Method from './Method'
+import openable from '../mixins/openable'
 
 export default {
   name: 'One',
   components: { Method, RequestQuery, Responses, RequestBody },
+
+  mixins: [openable],
+
   props: {
     item: {
       required: true,
       type: Object,
     },
-  },
-
-  data() {
-    return {
-      isOpened: false,
-    }
   },
 
   computed: {
@@ -90,24 +88,6 @@ export default {
 
     query() {
       return this.request.url.query
-    },
-  },
-
-  watch: {
-    isOpened(value) {
-      localStorage[this.slug] = value
-    },
-  },
-
-  created() {
-    if (localStorage[this.slug] && JSON.parse(localStorage[this.slug])) {
-      this.isOpened = true
-    }
-  },
-
-  methods: {
-    toggle() {
-      this.isOpened = !this.isOpened
     },
   },
 }

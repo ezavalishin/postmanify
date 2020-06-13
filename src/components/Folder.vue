@@ -22,6 +22,7 @@
 <script>
 import slugify from 'slugify'
 import One from './One'
+import openable from '../mixins/openable'
 export default {
   name: 'Folder',
 
@@ -36,33 +37,11 @@ export default {
     },
   },
 
-  data() {
-    return {
-      isOpened: false,
-    }
-  },
+  mixins: [openable],
 
   computed: {
     slug() {
       return slugify(`f_${this.$vnode.key}_${this.item.name}`)
-    },
-  },
-
-  watch: {
-    isOpened(value) {
-      localStorage[this.slug] = value
-    },
-  },
-
-  created() {
-    if (localStorage[this.slug] && JSON.parse(localStorage[this.slug])) {
-      this.isOpened = true
-    }
-  },
-
-  methods: {
-    toggle() {
-      this.isOpened = !this.isOpened
     },
   },
 }
