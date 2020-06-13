@@ -15,5 +15,5 @@ https://ezavalishin.github.io/postmanify/demo
 
 ```html
 <div id="postmanify" data-collection="{path to your collection}"></div>
-<script src="https://cdn.jsdelivr.net/npm/postmanify@0.2.0/dist/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/postmanify@0.2/dist/js/app.js"></script>
 ```
