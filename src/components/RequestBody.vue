@@ -3,41 +3,16 @@
     <div class="mb-5">Body</div>
 
     <div v-if="isUrlEncoded">
-      <div class="shadow overflow-hidden rounded border-b border-gray-200">
-        <table class="min-w-full bg-white">
-          <thead class="bg-gray-800 text-white">
-            <tr>
-              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
-                Key
-              </th>
-              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
-                Description
-              </th>
-              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
-                Example
-              </th>
-            </tr>
-          </thead>
-          <tbody class="text-gray-700">
-            <tr v-for="(param, key) in urlencoded" :key="key">
-              <td class="text-left py-3 px-4">{{ param.key }}</td>
-              <td class="text-left py-3 px-4">
-                {{ param.description }}
-              </td>
-              <td class="text-left py-3 px-4">
-                {{ param.value }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <params-table :params="urlencoded" />
     </div>
   </div>
 </template>
 
 <script>
+import ParamsTable from './ParamsTable'
 export default {
   name: 'RequestBody',
+  components: { ParamsTable },
   props: {
     body: {
       default: null,

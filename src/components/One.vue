@@ -38,9 +38,11 @@ import slugify from 'slugify'
 import RequestBody from './RequestBody'
 import Responses from './Responses'
 import RequestQuery from './RequestQuery'
+import Method from './Method'
 
 export default {
   name: 'One',
+  components: { Method, RequestQuery, Responses, RequestBody },
   props: {
     item: {
       required: true,
