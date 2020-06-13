@@ -5,15 +5,17 @@
       @click="toggle"
     >
       <div class="flex items-center">
-        <div class="mr-2">{{ method }}</div>
-        <div>{{ pathLink }}</div>
+        <div class="mr-2">
+          <method :method="method" />
+        </div>
+        <div class="text-black">{{ pathLink }}</div>
       </div>
       <div>{{ item.name }}</div>
     </div>
 
     <div v-if="isOpened" class="py-5 px-5 text-gray-600">
       <div>
-        {{ description }}
+        <vue-simple-markdown :source="description"></vue-simple-markdown>
       </div>
 
       <div v-if="query" class="mt-10">
@@ -39,7 +41,6 @@ import RequestQuery from './RequestQuery'
 
 export default {
   name: 'One',
-  components: { RequestQuery, Responses, RequestBody },
   props: {
     item: {
       required: true,
