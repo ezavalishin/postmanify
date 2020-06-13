@@ -7,3 +7,10 @@ export default {
   name: 'CodeHighlight',
 }
 </script>
+
+<style>
+code[class*='language-'],
+pre[class*='language-'] {
+  font-size: 0.9em;
+}
+</style>
