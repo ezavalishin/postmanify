@@ -27,11 +27,15 @@
       </div>
     </header>
 
+    <div>
+      <form-input name="search" v-model="search" label="Search" />
+    </div>
+
     <component
       :is="item.item ? 'folder' : 'one'"
       :item="item"
       :key="key"
-      v-for="(item, key) in items"
+      v-for="(item, key) in filteredItems"
     >
     </component>
 
@@ -71,12 +75,17 @@ export default {
     return {
       items: [],
       dumpLink: null,
+      search: null,
     }
   },
 
   computed: {
     variables() {
       return this.$store.state.variables.values
+    },
+
+    filteredItems() {
+      return this.items.filter(this.filterItems)
     },
   },
 
@@ -93,6 +102,37 @@ export default {
   methods: {
     openVariables() {
       this.$refs.variables.open()
+    },
+
+    filterItems(rootItem) {
+      const item = { ...rootItem }
+
+      if (!this.search) {
+        return true
+      }
+
+      const term = this.search.toLocaleLowerCase()
+
+      if (
+        (item.name && item.name.toLowerCase().includes(term)) ||
+        (item.request &&
+          item.request.url &&
+          item.request.url.raw.toLowerCase().includes(term))
+      ) {
+        return true
+      }
+
+      if (item.item) {
+        item.item = item.item.filter(this.filterItems)
+
+        console.log(item.item)
+
+        if (item.item.length > 0) {
+          return true
+        }
+      }
+
+      return false
     },
   },
 }
