@@ -1,5 +1,9 @@
 <template>
-  <div class="bg-blue-100" :class="{ 'shadow-xl my-3 bg-blue-200': isOpened }">
+  <div
+    :id="slug"
+    class="bg-blue-100"
+    :class="{ 'shadow-xl my-3 bg-blue-200': isOpened }"
+  >
     <div
       class="flex items-center justify-between border-b-2 border-gray-100 py-4 px-4 cursor-pointer"
       @click="toggle"
@@ -10,7 +14,13 @@
         </div>
         <div class="text-black">{{ pathLink }}</div>
       </div>
-      <div>{{ item.name }}</div>
+      <div class="flex items-center">
+        <div>{{ item.name }}</div>
+        <div class="ml-2" @click.stop="copyLink">
+          <check-icon v-if="linkCopied" class="w-5 h-5 fill-current" />
+          <link-icon v-else class="w-5 h-5 fill-current" />
+        </div>
+      </div>
     </div>
 
     <div v-if="isOpened" class="py-5 px-5 text-gray-600">
@@ -41,11 +51,27 @@ import RequestQuery from './RequestQuery'
 import Method from './Method'
 import openable from '../mixins/openable'
 
+import LinkIcon from '../assets/link.svg'
+import CheckIcon from '../assets/check.svg'
+
 export default {
   name: 'One',
-  components: { Method, RequestQuery, Responses, RequestBody },
+  components: {
+    Method,
+    RequestQuery,
+    Responses,
+    RequestBody,
+    LinkIcon,
+    CheckIcon,
+  },
 
   mixins: [openable],
+
+  data() {
+    return {
+      linkCopied: false,
+    }
+  },
 
   props: {
     item: {
@@ -64,7 +90,8 @@ export default {
     },
 
     slug() {
-      return slugify(`f_${this.$vnode.key}_${this.item.name}`)
+      const [folder] = this.$vnode.key.split('::')
+      return folder + '::' + slugify(this.method + '_' + this.path)
     },
 
     description() {
@@ -88,6 +115,25 @@ export default {
 
     query() {
       return this.request.url.query
+    },
+  },
+
+  methods: {
+    copyLink() {
+      this.$copyText(
+        location.protocol +
+          '//' +
+          location.host +
+          location.pathname +
+          '#request=' +
+          this.slug
+      ).then(() => {
+        this.linkCopied = true
+
+        setTimeout(() => {
+          this.linkCopied = false
+        }, 1000)
+      })
     },
   },
 }

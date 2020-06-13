@@ -11,12 +11,12 @@ export default {
 
   watch: {
     isOpened(value) {
-      localStorage[this.slug] = value
+      this.setValue(this.slug, value)
     },
   },
 
   created() {
-    if (localStorage[this.slug] && JSON.parse(localStorage[this.slug])) {
+    if (this.getBoolean(this.slug)) {
       this.isOpened = true
     }
   },

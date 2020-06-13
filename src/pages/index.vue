@@ -62,6 +62,7 @@ import FormInput from '../components/FormInput'
 import Eye from '../assets/eye.svg'
 import Download from '../assets/download.svg'
 import storagable from '../mixins/storagable'
+import getUrlParams from '../utils/getUrlParams'
 
 export default {
   components: {
@@ -107,8 +108,30 @@ export default {
     this.items = data.item
     this.$store.commit('variables/set', data.variable)
 
-    if (this.getValue('search')) {
-      this.search = this.getValue('search')
+    const hash = getUrlParams(location.hash)
+
+    if (hash.request) {
+      const value = hash.request
+
+      const [folder] = value.split('::')
+
+      this.setValue(folder, true)
+      this.setValue(value, true)
+
+      location.hash = ''
+
+      this.$nextTick(() => {
+        const el = document.getElementById(value)
+        if (el) {
+          window.scrollTo({
+            top: el.offsetTop,
+          })
+        }
+      })
+    } else {
+      if (this.getValue('search')) {
+        this.search = this.getValue('search')
+      }
     }
   },
 

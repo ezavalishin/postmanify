@@ -11,7 +11,7 @@
       <component
         :is="innerItem.item ? 'folder' : 'one'"
         v-for="innerItem in item.item"
-        :key="slugify(innerItem.name)"
+        :key="slug + '::' + slugify(innerItem.name)"
         :item="innerItem"
       >
       </component>
@@ -41,7 +41,7 @@ export default {
 
   computed: {
     slug() {
-      return slugify(`f_${this.$vnode.key}_${this.item.name}`)
+      return slugify(`f_${this.item.name}`)
     },
   },
 

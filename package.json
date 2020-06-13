@@ -15,6 +15,7 @@
     "sweet-modal-vue": "^2.0.0",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11",
+    "vue-clipboard2": "^0.3.1",
     "vue-prism": "^1.0.5",
     "vue-simple-markdown": "^1.1.4",
     "vue-svg-loader": "^0.16.0",
