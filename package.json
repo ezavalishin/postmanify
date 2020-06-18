@@ -1,6 +1,6 @@
 {
   "name": "postmanify",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
