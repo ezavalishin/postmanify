@@ -32,7 +32,7 @@
         <request-query :query="query" />
       </div>
 
-      <div class="mt-10">
+      <div v-if="body" class="mt-10">
         <request-body :body="body" />
       </div>
 

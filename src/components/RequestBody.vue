@@ -3,7 +3,13 @@
     <div class="mb-5">Body</div>
 
     <div v-if="isUrlEncoded">
+      <div>urlencoded</div>
       <params-table :params="urlencoded" />
+    </div>
+
+    <div v-if="isFormdata">
+      <div>Formdata</div>
+      <params-table :params="formdata" />
     </div>
   </div>
 </template>
@@ -29,6 +35,10 @@ export default {
       return this.body.mode === 'urlencoded'
     },
 
+    isFormdata() {
+      return this.body.mode === 'formdata'
+    },
+
     isRaw() {
       return this.body.mode === 'raw'
     },
@@ -48,6 +58,10 @@ export default {
 
     urlencoded() {
       return this.body.urlencoded
+    },
+
+    formdata() {
+      return this.body.formdata
     },
 
     raw() {
