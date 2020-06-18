@@ -173,9 +173,13 @@ export default {
 </script>
 
 <style>
-.sweet-modal .sweet-box-actions .sweet-action-close {
+#postmanify .sweet-modal .sweet-box-actions .sweet-action-close {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#postmanify table {
+  display: table;
 }
 </style>
