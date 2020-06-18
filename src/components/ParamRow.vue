@@ -36,6 +36,9 @@ export default {
     },
 
     description() {
+      if (!this.param.description) {
+        return ''
+      }
       return this.param.description.replace(REQUIRED_REGEX, '')
     },
   },
