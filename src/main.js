@@ -15,7 +15,9 @@ Vue.use(VueClipboard)
 
 Vue.config.productionTip = false
 
-new Vue({
-  render: (h) => h(App),
-  store,
-}).$mount('#postmanify')
+window.onload = () => {
+  new Vue({
+    render: (h) => h(App),
+    store,
+  }).$mount('#postmanify')
+}
