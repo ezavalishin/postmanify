@@ -90,7 +90,8 @@ export default {
     },
 
     slug() {
-      const [folder] = this.$vnode.key.split('::')
+      const key = this.$vnode.key + ''
+      const [folder] = key.split('::')
       return folder + '::' + slugify(this.method + '_' + this.path)
     },
 

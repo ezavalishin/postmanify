@@ -1,5 +1,5 @@
 <template>
-  <div v-if="body">
+  <div v-if="body && hasBody">
     <div class="mb-5">Body</div>
 
     <div v-if="isUrlEncoded">
@@ -32,11 +32,15 @@ export default {
     },
 
     isUrlEncoded() {
-      return this.body.mode === 'urlencoded'
+      return this.body.mode === 'urlencoded' && this.urlencoded.length > 0
     },
 
     isFormdata() {
-      return this.body.mode === 'formdata'
+      return this.body.mode === 'formdata' && this.formdata.length > 0
+    },
+
+    hasBody() {
+      return this.isFormdata || this.isUrlEncoded
     },
 
     isRaw() {
